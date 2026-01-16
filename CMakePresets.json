@@ -8,11 +8,15 @@
             "generator": "Visual Studio 17 2022",
             "binaryDir": "${sourceDir}/msvc.build/${presetName}",
             "installDir": "${sourceDir}/msvc.install/${presetName}",
+            "vendor": {
+                "jetbrains.com/clion": {
+                    "toolchain": "Visual Studio"
+                }
+            },
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe",
                 "CMAKE_WARN_DEPRECATED": "FALSE",
-                "CMAKE_PRESET_NAME": "${presetName}"
+                "CMAKE_PRESET_NAME": "${presetName}",
+                "Qt6_DIR": "C:/Qt/6.10.1/msvc2022_64/lib/cmake/Qt6"
             },
             "condition": {
                 "type": "equals",
