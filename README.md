@@ -1,6 +1,87 @@
 # ![MuseScore Studio](share/icons/musescore_logo_full.png)
+Japp — här är en “one page”-rutin du kan köra när du bara vill bygga och starta MuseScore igen, utan att behöva minnas något.
+
+0) Öppna rätt terminal
+
+Bäst: Start-menyn → öppna “x64 Native Tools Command Prompt for VS” (eller “Developer Command Prompt”).
+
+Gå sen till projektet:
+
+cd /d C:\ms\MuseScore
+
+
+(Om du inte kör Dev Prompt måste du först köra vcvars64.bat, men Dev Prompt är enklast.)
+
+1) Bygg RelWithDebInfo (snabbare än ren Debug, men fortfarande debugbar)
+
+Kör din wrapper:
+
+dev.cmd rel
+
+
+Om den säger no work to do är du redan klar.
+
+2) Install + deploy Qt (bara om du vill köra exe från install/bin)
+
+Kör:
+
+dev.cmd rel install
+
+
+Det här är det steget du behövde när exe saknar Qt-dll:er eller när du vill köra “rätt” layout.
+
+3) Starta appen
+
+Om du har run-flagga i dev.cmd:
+
+dev.cmd rel install run
+
+
+Annars starta manuellt (stabilt, funkar alltid):
+
+C:\ms\MuseScore\cmake-build-relwithdebinfo\install\bin\MuseScore4.exe
+
+Om du får LNK1168 (kan inte skriva MuseScore4.exe)
+
+Stäng appen och kör igen. (Din dev.cmd har redan taskkill, så ofta räcker det.)
+
+Om du vill bygga Debug istället
+dev.cmd clean
+dev.cmd
+dev.cmd install
+
+
+Men i praktiken: rel är din “vardagsbuild”.
 
 Music notation and composition software
+🚀 Vanlig utveckling (snabbast)
+dev.cmd rel
+
+🔁 Full rebuild (när något känns “off”)
+dev.cmd rel clean
+
+🐢 Debug-build (mer asserts, långsammare)
+dev.cmd
+
+🧹 Total reset av debug
+dev.cmd clean
+-------------------------------------------------------
+För att göra “kom tillbaka efter veckor”-flödet ännu mer idiot-säkert (utan att optimera ihjäl dig), här är tre små förbättringar du kan lägga i README eller som genvägar:
+
+1) Tre kommandon du alltid kan luta dig mot
+   cd /d C:\ms\MuseScore
+   dev.cmd rel
+   dev.cmd rel install run
+
+
+Första bygger (ofta “no work to do”), andra ser till att runtime finns och startar.
+
+2) “Städa och börja om” när nåt blir weird
+   dev.cmd rel clean
+   dev.cmd rel install run
+
+3) Snabb rebuild när du ändrat nåt litet
+   dev.cmd rel
 
 ## Comment for git test
 

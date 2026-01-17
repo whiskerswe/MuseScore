@@ -20,10 +20,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "asioaudiodriver.h"
-
 #include "global/async/notification.h"
 
-#undef UNICODE
+#ifdef _WIN32
+  #include <Windows.h>
+  #include <unknwn.h>
+  #include <objbase.h>
+#endif
+
 #include "ASIOSDK/common/asiosys.h"
 #include "ASIOSDK/common/asio.h"
 #include "ASIOSDK/common/iasiodrv.h"

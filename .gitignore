@@ -1,3 +1,15 @@
+# CMake build directories
+cmake-build-*/
+build*/
+
+# MSVC / object files
+*.obj
+*.pdb
+*.ilk
+*.exe
+
+# Temporary test files
+thread_test.*
 .*,
 *~
 *.swp
@@ -15,7 +27,6 @@ build.install
 build.tooldata
 build.qtc
 build-*
-build
 win32build
 win32install
 win64build
